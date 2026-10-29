@@ -1,0 +1,84 @@
+@page
+@model AutoServiz.Pages.Javitasok.IndexModel
+
+@{
+    ViewData["Title"] = "Javítások";
+}
+
+<h1>Javítások</h1>
+
+<p>
+    <a asp-page="Create">Új javítás</a>
+</p>
+
+<form method="get">
+    Szűrés állapot szerint:
+    <select name="allapot">
+        <option value="">Mind</option>
+        <option>Felvéve</option>
+        <option>Folyamatban</option>
+        <option>Kész</option>
+    </select>
+    <input type="submit" value="Szűrés" class="btn btn-secondary btn-sm" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Javitas[0].Rendszam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Javitas[0].Ugyfel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Javitas[0].Leiras)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Javitas[0].Koltseg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Javitas[0].Allapot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Javitas[0].FelvetelDatuma)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Javitas) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rendszam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ugyfel!.Nev)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Leiras)
+            </td>
+            <td>
+                @item.Koltseg Ft
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Allapot)
+                @if (item.Allapot != "Kész")
+                {
+                    <form method="post" asp-page-handler="Leptet" asp-route-id="@item.Id" style="display:inline">
+                        <input type="submit" value="Léptetés" class="btn btn-success btn-sm" />
+                    </form>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FelvetelDatuma)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Szerkesztés</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Részletek</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Törlés</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

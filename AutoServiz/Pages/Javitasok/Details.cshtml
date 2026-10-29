@@ -1,0 +1,54 @@
+@page
+@model AutoServiz.Pages.Javitasok.DetailsModel
+
+@{
+    ViewData["Title"] = "Javítás adatai";
+}
+
+<h1>Javítás adatai</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Javitas.Rendszam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Javitas.Rendszam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Javitas.Ugyfel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Javitas.Ugyfel!.Nev)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Javitas.Leiras)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Javitas.Leiras)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Javitas.Koltseg)
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Javitas.Koltseg Ft
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Javitas.Allapot)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Javitas.Allapot)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Javitas.FelvetelDatuma)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Javitas.FelvetelDatuma)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Javitas.Id">Szerkesztés</a> |
+    <a asp-page="./Index">Vissza a listához</a>
+</div>

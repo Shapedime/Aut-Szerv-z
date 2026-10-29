@@ -1,0 +1,45 @@
+@page
+@model AutoServiz.Pages.Javitasok.DeleteModel
+
+@{
+    ViewData["Title"] = "Javítás törlése";
+}
+
+<h1>Javítás törlése</h1>
+
+<h3>Biztosan törölni akarod?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Javitas.Rendszam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Javitas.Rendszam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Javitas.Ugyfel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Javitas.Ugyfel!.Nev)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Javitas.Leiras)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Javitas.Leiras)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Javitas.Allapot)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Javitas.Allapot)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Javitas.Id" />
+        <input type="submit" value="Törlés" class="btn btn-danger" /> |
+        <a asp-page="./Index">Vissza a listához</a>
+    </form>
+</div>

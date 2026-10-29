@@ -1,0 +1,36 @@
+@page
+@model AutoServiz.Pages.Ugyfelek.DetailsModel
+
+@{
+    ViewData["Title"] = "Ügyfél adatai";
+}
+
+<h1>Ügyfél adatai</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ugyfel.Nev)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ugyfel.Nev)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ugyfel.Telefon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ugyfel.Telefon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ugyfel.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ugyfel.Email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Ugyfel.Id">Szerkesztés</a> |
+    <a asp-page="./Index">Vissza a listához</a>
+</div>

@@ -12,6 +12,7 @@ public class Javitas
 
     [Required(ErrorMessage = "A rendszámot kötelező megadni!")]
     [StringLength(10)]
+    [RegularExpression(@"^[A-Z]{3}-[0-9]{3}$", ErrorMessage = "A rendszám formátuma: ABC-123 (nagybetűkkel)")]
     [Display(Name = "Rendszám")]
     public string Rendszam { get; set; } = "";
 

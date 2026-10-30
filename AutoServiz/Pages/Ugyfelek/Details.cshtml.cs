@@ -24,7 +24,10 @@ public class DetailsModel : PageModel
             return NotFound();
         }
 
-        var ugyfel = await _context.Ugyfel.FirstOrDefaultAsync(m => m.Id == id);
+        // a javításait is betölti
+        var ugyfel = await _context.Ugyfel
+            .Include(u => u.Javitasok)
+            .FirstOrDefaultAsync(m => m.Id == id);
         if (ugyfel == null)
         {
             return NotFound();

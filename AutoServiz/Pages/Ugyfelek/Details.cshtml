@@ -30,6 +30,32 @@
         </dd>
     </dl>
 </div>
+
+<h4>Javításai</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rendszám</th>
+            <th>Leírás</th>
+            <th>Állapot</th>
+            <th>Dátum</th>
+            <th>Költség</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Ugyfel.Javitasok) {
+        <tr>
+            <td>@item.Rendszam</td>
+            <td>@item.Leiras</td>
+            <td>@item.Allapot</td>
+            <td>@item.FelvetelDatuma.ToShortDateString()</td>
+            <td>@item.Koltseg Ft</td>
+        </tr>
+}
+    </tbody>
+</table>
+<p><b>Összköltség: @Model.Ugyfel.Javitasok.Sum(j => j.Koltseg) Ft</b></p>
+
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Ugyfel.Id">Szerkesztés</a> |
     <a asp-page="./Index">Vissza a listához</a>

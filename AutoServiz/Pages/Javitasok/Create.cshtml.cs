@@ -26,6 +26,11 @@ public class CreateModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
+        if (Javitas.Allapot == "Kész" && Javitas.Koltseg <= 0)
+        {
+            ModelState.AddModelError("Javitas.Koltseg", "Kész javításnál meg kell adni a költséget!");
+        }
+
         if (!ModelState.IsValid)
         {
             ViewData["UgyfelId"] = new SelectList(_context.Ugyfel, "Id", "Nev");

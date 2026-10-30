@@ -7,6 +7,11 @@
 
 <h1>Javítások</h1>
 
+@if (Model.Hiba != "")
+{
+    <div class="alert alert-danger">@Model.Hiba</div>
+}
+
 <p>
     <a asp-page="Create">Új javítás</a>
 </p>

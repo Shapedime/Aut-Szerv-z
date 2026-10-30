@@ -7,6 +7,11 @@
 
 <h1>Ügyfél törlése</h1>
 
+@if (Model.Hiba != "")
+{
+    <div class="alert alert-danger">@Model.Hiba</div>
+}
+
 <h3>Biztosan törölni akarod?</h3>
 <div>
     <hr />

@@ -18,6 +18,8 @@ public class DeleteModel : PageModel
     [BindProperty]
     public Ugyfel Ugyfel { get; set; } = default!;
 
+    public string Hiba { get; set; } = "";
+
     public async Task<IActionResult> OnGetAsync(int? id)
     {
         if (id == null)
@@ -46,6 +48,15 @@ public class DeleteModel : PageModel
         var ugyfel = await _context.Ugyfel.FindAsync(id);
         if (ugyfel != null)
         {
+            // ha van javítása, nem lehet törölni
+            bool vanJavitasa = await _context.Javitas.AnyAsync(j => j.UgyfelId == id);
+            if (vanJavitasa)
+            {
+                Ugyfel = ugyfel;
+                Hiba = "Ezt az ügyfelet nem lehet törölni, mert van javítása!";
+                return Page();
+            }
+
             Ugyfel = ugyfel;
             _context.Ugyfel.Remove(Ugyfel);
             await _context.SaveChangesAsync();

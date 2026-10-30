@@ -17,6 +17,8 @@ public class IndexModel : PageModel
 
     public IList<Javitas> Javitas { get; set; } = default!;
 
+    public string Hiba { get; set; } = "";
+
     public async Task OnGetAsync(string? allapot)
     {
         // ha van kiválasztva állapot, akkor csak azokat mutatja
@@ -50,6 +52,13 @@ public class IndexModel : PageModel
         }
         else if (javitas.Allapot == "Folyamatban")
         {
+            // csak akkor lehet kész, ha meg van adva a költség
+            if (javitas.Koltseg <= 0)
+            {
+                Hiba = "Nem lehet Kész, amíg nincs megadva a költség! (" + javitas.Rendszam + ")";
+                await OnGetAsync(null);
+                return Page();
+            }
             javitas.Allapot = "Kész";
         }
 
